@@ -1,4 +1,3 @@
-#include "gl.hpp"
 #include "artifice.hpp"
 
 #define GLEW_STATIC

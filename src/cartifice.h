@@ -8,10 +8,17 @@ extern "C"
 #ifdef ARTIFICE_DLL_BUILD
 #define ARTIFICE_DLL_TYPE __declspec(dllexport)
 #else
+
 #ifdef ARTIFICE_STATIC_BUILD
     #define ARTIFICE_DLL_TYPE
 #else
+
+#ifdef ARTIFICE_DLL_IMPORT
     #define ARTIFICE_DLL_TYPE __declspec(dllimport)
+#else
+	#define ARTIFICE_DLL_TYPE
+#endif
+
 #endif
 #endif
 

@@ -185,14 +185,6 @@ extern "C"
             param->error_string = p->art->errorb.c_str();
             param->error = p->art->error;
 
-            //In case of error, deinitialize artificer
-            TM_DoCall(p,TM_DEINIT);
-
-            //and end the thread, free data and return null
-            TM_Done(p);
-            delete (p);
-
-            return nullptr;
         }
 
         param->output_width = p->art->width;

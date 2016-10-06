@@ -1,7 +1,6 @@
 
 #include <string>
 #include <vector>
-#include "gl.hpp"
 
 #include "cartifice.h"
 #include "framesource.hpp"
@@ -181,6 +180,7 @@ void doGL(int argc, const char** argv)
     if (params.error > 0)
     {
         std::cout << params.error_string << std::endl;
+		artificer_end(art);
         return;
     }
 
@@ -225,4 +225,5 @@ void doGL(int argc, const char** argv)
 int main(int argc, const char** argv)
 {
     doGL(argc, argv);
+	return 0;
 }

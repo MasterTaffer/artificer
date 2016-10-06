@@ -2,6 +2,14 @@
 
 #include <cstring>
 #include <algorithm>
+#include <vector>
+#include <locale>
+#include <codecvt>
+#include <string>
+
+#ifdef TINYDIR_WSTRING
+std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+#endif
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -13,9 +21,15 @@
 
 #include "framesource.hpp"
 
-void GetFilesInDirectory(std::string dirstr, std::string fileEnding, std::vector<std::string> & ret)
+void GetFilesInDirectory(std::string dstr, std::string fEnding, std::vector<std::string> & ret)
 {
-
+#ifdef TINYDIR_WSTRING
+	auto dirstr = converter.from_bytes(dstr);
+	auto fileEnding = converter.from_bytes(fEnding);
+#else
+	auto dirstr = dstr;
+	auto fileEnding = fEnding;
+#endif
 
     tinydir_dir dir;
     tinydir_open(&dir, dirstr.c_str());
@@ -33,7 +47,7 @@ void GetFilesInDirectory(std::string dirstr, std::string fileEnding, std::vector
             }
             else
             {
-                std::string name = dirstr+"/"+file.name;
+				auto name = dirstr+SLASH+file.name;
                 int l = name.length();
                 int fel = fileEnding.length();
                 if (l >= fel)
@@ -49,8 +63,12 @@ void GetFilesInDirectory(std::string dirstr, std::string fileEnding, std::vector
                     }
                     if (match)
                     {
-                        std::string ak = dirstr+"/"+file.name;
-                        ret.push_back(ak);
+                        auto ak = dirstr+SLASH+file.name;
+						#ifdef TINYDIR_WSTRING
+						ret.push_back(converter.to_bytes(ak));
+						#else	
+						ret.push_back(ak);
+						#endif
                     }
                 }
             }
