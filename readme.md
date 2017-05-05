@@ -1,4 +1,4 @@
-#artificer
+# artificer
 
 **OpenGL video/image processing utility.**
 
@@ -17,7 +17,7 @@ The command line interface also uses:
 * [stb_image.h & stb_image_write.h](https://github.com/nothings/stb)
 * [tinydircpp](https://github.com/iamOgunyinka/tinydircpp)
 
-##Compilation
+## Compilation
 
 You can use CMake, and it might straight up work. In case it doesn't, you can manually compile the command line interface:
 
@@ -27,7 +27,7 @@ You can use CMake, and it might straight up work. In case it doesn't, you can ma
 
 To compile without the command line interface, simply leave the framesource.cpp and main.cpp out.
 
-##Usage
+## Usage
 
 Documentation of the API is within [cartifice.h](src/cartifice.h). Usage example can be found in the command line interface example ([main.cpp](src/main.cpp)).
 Check the usage of artificer_start(), artificer_process() and artificer_end().
